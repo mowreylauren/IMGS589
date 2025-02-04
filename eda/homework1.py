@@ -32,11 +32,13 @@ band_labels = [
     "11 - SWIR 1 (1610nm)",
     "12 - SWIR 2 (2190nm)"
 ]
+#clipping anywhere data is equal to zero (no data)
+data_clipped = np.where(data == 0, np.nan, data)
 
 #displaying each band
 for i in range(rows*cols):
     grid = axes[i//cols, i%cols]
-    im = grid.imshow(data[:, :, i], cmap='ocean')
+    im = grid.imshow(data_clipped[:, :, i], cmap='terrain')
     grid.set_axis_off()
     grid.set_title(band_labels[i])
 
@@ -233,7 +235,7 @@ plt.legend()
 plt.title('Comparison of Closest Sentinel-2 Matches with ECOSTRESS Road')
 plt.show()
 
-#setting a threshold for identified pixels
+#setting a cutoff angle threshold
 threshold= 0.4
 classified_oak = angles_oak.reshape(954, 716) < threshold
 classified_road = angles_road.reshape(954, 716) < threshold
