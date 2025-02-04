@@ -118,7 +118,7 @@ print(f'correlation matrix (12 band):\n{corr_matrix}')
 #plotting correlation matrix
 band_numbers = ['1','2','3','4','5','6','7','8','8A','9','11','12']
 plt.title("Correlation Matrix")
-mat = plt.imshow(corr_matrix, cmap='coolwarm', interpolation='nearest')
+mat = plt.imshow(corr_matrix, cmap='coolwarm', interpolation='nearest', vmin=-1, vmax=1)
 plt.xticks(list(range(0,12)),band_numbers) #horizontal tick mark
 plt.yticks(list(range(0,12)),band_numbers) #vertical tick mark
 plt.colorbar(mat, label="Correlation Coefficient") #adding colorbar
